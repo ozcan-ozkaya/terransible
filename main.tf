@@ -524,7 +524,7 @@ resource "aws_route53_zone" "primary" {
 ##### WWW
 
 resource "aws_route53_record" "www" {
-  zone_id = "${aws_route53_zone.primary.zone.id}"
+  zone_id = "${aws_route53_zone.primary.zone_id}"
   name    = "www.${var.domain_name}.co.uk"
   type    = "A"
 
@@ -538,7 +538,7 @@ resource "aws_route53_record" "www" {
 ##### DEV
 
 resource "aws_route53_record" "dev" {
-  zone_id = "${aws_route53_zone.primary.zone.id}"
+  zone_id = "${aws_route53_zone.primary.zone_id}"
   name    = "dev.${var.domain_name}.co.uk"
   type    = "A"
   ttl     = "300"
@@ -558,7 +558,7 @@ resource "aws_route53_zone" "secondary" {
 ##### DB
 
 resource "aws_route53_record" "db" {
-  zone_id = "${aws_route53_zone.secondary.zone.id}"
+  zone_id = "${aws_route53_zone.secondary.zone_id}"
   name    = "db.${var.domain_name}.co.uk"
   type    = "CNAME"
   ttl     = "300"
