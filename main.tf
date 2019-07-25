@@ -34,7 +34,7 @@ resource "aws_iam_role" "s3_access_role" {
 
   assume_role_policy = <<EOF
 {
-  "Version": "2012=10-17",
+  "Version": "2012-10-17",
   "Statement": [
   {
     "Action": "sts:Assumerole",
@@ -354,7 +354,7 @@ resource "aws_s3_bucket" "code" {
 resource "aws_db_instance" "wp_db" {
   allocated_storage      = 10
   engine                 = "mysql"
-  engine_version         = "5.6.27"
+  engine_version         = "5.6.34"
   instance_class         = "${var.db_instance_class}"
   name                   = "${var.dbname}"
   username               = "${var.dbuser}"
@@ -411,7 +411,7 @@ resource "aws_elb" "wp_elb" {
   name = "${var.domain_name}-elb"
 
   subnets = ["{aws_subnet.wp_public1_subnet.id}",
-    "${aws_subnet.wp_public2_subnet.id}",
+    "${aws_subnet.wp_public2_subnet.id}"
   ]
 
   security_groups = ["${aws_security_group.wp_public_sg.id}"]
