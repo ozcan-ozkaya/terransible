@@ -12,9 +12,11 @@
       - php-mysql
     - name: Download WordPress
       get_url: url=http://wordpress.org/wordpress-latest.tar.gz dest=/var/www/html/wordpress.tar.gz froce=yes
+    - name: Extract WordPress
+      command: "tar xzf /var/www/html/wordpress.tar.gz -C /var/www/html --strip-components 1"   
     - name: make my directory tree readable
       file:
-         pat: /vas/www/html
+         path: /vas/www/html
          mode: u=rwX,g=rX,o=rX
          recurse: yes
          owner: apache
