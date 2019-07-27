@@ -15,7 +15,7 @@
       command: "tar xzf /var/www/html/wordpress.tar.gz -C /var/www/html --strip-components 1"   
     - name: Make my directory tree readable
       file:
-         path: /var/www/html
+         path: /var/www/html/
          mode: u=rwX,g=rX,o=rX
          recurse: yes
          owner: apache
