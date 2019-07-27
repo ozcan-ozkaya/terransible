@@ -37,7 +37,7 @@ resource "aws_iam_role" "s3_access_role" {
   "Version": "2012-10-17",
   "Statement": [
   {
-    "Action": "sts:Assumerole",
+    "Action": "sts:AssumeRole",
     "Principal": {
       "Service": "ec2.amazonaws.com"
   },
@@ -340,7 +340,7 @@ resource "random_id" "wp_code_bucket" {
 }
 
 resource "aws_s3_bucket" "code" {
-  bucket        = "${var.domain_name}_${random_id.wp_code_bucket.dec}"
+  bucket        = "${var.domain_name}-${random_id.wp_code_bucket.dec}"
   acl           = "private"
   force_destroy = true
 
@@ -360,7 +360,7 @@ resource "aws_db_instance" "wp_db" {
   username               = "${var.dbuser}"
   password               = "${var.dbpassword}"
   db_subnet_group_name   = "${aws_db_subnet_group.wp_rds_subnetgroup.name}"
-  vpc_security_group_ids = ["{aws_security_group.wp_rds_sg.id}"]
+  vpc_security_group_ids = ["${aws_security_group.wp_rds_sg.id}"]
   skip_final_snapshot    = true
 }
 
@@ -410,7 +410,7 @@ EOD
 resource "aws_elb" "wp_elb" {
   name = "${var.domain_name}-elb"
 
-  subnets = ["{aws_subnet.wp_public1_subnet.id}",
+  subnets = ["${aws_subnet.wp_public1_subnet.id}",
     "${aws_subnet.wp_public2_subnet.id}"
   ]
 
