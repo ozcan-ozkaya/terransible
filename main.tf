@@ -394,7 +394,8 @@ EOD
   }
 
   provisioner "local-exec" {
-    command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.wp_dev.id} --profile ozcan-root && ansible-playbook -i aws_hosts wordpress.yml"
+    command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.wp_dev.id}"
+#&& ansible-playbook -i aws_hosts wordpress.yml"
   }
 }
 
@@ -466,7 +467,7 @@ resource "aws_launch_configuration" "wp_lc" {
   name_prefix          = "wp_ls-"
   image_id             = "${aws_ami_from_instance.wp_golden.id}"
   instance_type        = "${var.lc_instance_type}"
-  security_groups      = ["$aws_security_group.wp_private_sg.id}"]
+  security_groups      = ["${aws_security_group.wp_private_sg.id}"]
   iam_instance_profile = "${aws_iam_instance_profile.s3_access_profile.id}"
   key_name             = "${var.key_name}"
   user_data            = "${file("userdata")}"
@@ -492,7 +493,7 @@ resource "aws_autoscaling_group" "wp_asg" {
     "${aws_subnet.wp_private2_subnet.id}",
   ]
 
-  launch_configuration = "{aws_launch_configuration.wp_lc.name}"
+  launch_configuration = "${aws_launch_configuration.wp_lc.name}"
 
   tag {
     key                 = "Name"
