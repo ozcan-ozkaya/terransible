@@ -1,5 +1,4 @@
 variable "aws_region" {}
-variable "aws_profile" {}
 data "aws_availability_zones" "available" {}
 variable "vpc_cidr" {}
 
@@ -17,7 +16,6 @@ variable "dbpassword" {}
 
 variable "dev_instance_type" {}
 variable "dev_ami" {}
-variable "public_key_path" {}
 variable "key_name" {}
 
 variable "elb_healthy_threshold" {}
