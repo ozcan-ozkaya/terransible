@@ -1,4 +1,4 @@
-Reusable Terraform and Ansible scripts creating and configuring AWS infrastructure
+## Reusable Terraform and Ansible scripts creating and configuring AWS infrastructure
 
 Terraform --version
 Terraform v0.11.13
