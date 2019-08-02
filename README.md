@@ -1,5 +1,7 @@
 ## Reusable Terraform and Ansible scripts creating and configuring AWS infrastructure
 
+The code in this repo will work  with  below configuration.
+
 Terraform --version
 
  + Terraform v0.11.13
@@ -18,3 +20,5 @@ ansible --version
 aws --version
 
  + aws-cli/1.16.161 Python/2.7.15rc1 Linux/4.9.184-linuxkit botocore/1.12.151
+
+Launch  first  terraform apply command, when it finished  run _wordpress_config.sh and  s3update.sh  to push the site code to the production.
